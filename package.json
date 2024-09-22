@@ -1,0 +1,23 @@
+{
+  "name": "express-repaso",
+  "version": "1.0.0",
+  "description": "Voy a intentar aplicar todo lo que me acuerde sin buscar un tutorial, a lo mucho buscar solo en la documentación oficial de las dependencias",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "express",
+    "node"
+  ],
+  "author": "Tomás Vargas",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "3.1.7",
+    "typescript": "^5.6.2"
+  },
+  "dependencies": {
+    "ts-node": "^10.9.2"
+  }
+}
