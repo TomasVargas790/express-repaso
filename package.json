@@ -4,7 +4,7 @@
   "description": "Voy a intentar aplicar todo lo que me acuerde sin buscar un tutorial, a lo mucho buscar solo en la documentación oficial de las dependencias",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon",
+    "dev": "node --watch -r ts-node/register --env-file=.env ./src/index.ts" ,
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -14,10 +14,11 @@
   "author": "Tomás Vargas",
   "license": "ISC",
   "devDependencies": {
-    "nodemon": "3.1.7",
-    "typescript": "^5.6.2"
+    "@types/express": "4.17.21",
+    "typescript": "5.6.2"
   },
   "dependencies": {
-    "ts-node": "^10.9.2"
+    "express": "4.21.0",
+    "ts-node": "10.9.2"
   }
 }
