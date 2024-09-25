@@ -1,19 +1,19 @@
 import express from 'express'
 import env from './env'
+import { authMiddleware, loginMiddleware } from './auth'
+import { headerHandler } from './utils/network'
 
 const { server: { port } } = env
 
-const app = express();
+const app = express()
+
 app.use(express.json())
-app.get('/', (req, res) => res.json({ aaa: 'oaaaa' }))
-app.post('/', (req, res) => {
-    try {
-        const response = Object.values(req.body)
-        res.json(response)
-    } catch (error) {
-        console.error('[ERROR]', error);
-        res.send('q')
-    }
-})
+app.use(headerHandler)
+
+app.get('/login', loginMiddleware)
+
+app.use(authMiddleware)
+
+app.use('/', (_, res) => res.send('oa'))
 
 app.listen(port, () => console.log(`[SERVER RUNNING IN PORT ${port}]`))

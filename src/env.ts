@@ -1,6 +1,6 @@
 type DBConfig = {
     host: string;
-    port: string;
+    port: number;
     user: string;
     password: string;
     name: string;
@@ -9,8 +9,8 @@ type DBConfig = {
 
 type ServerConfig = {
     port: string,
-    env: string
-
+    env: string,
+    secret: string
 };
 
 type EnvType = {
@@ -28,16 +28,16 @@ const validateEnvVariables = (envVariables: string[]): void => {
 };
 
 // Definir las variables de entorno requeridas
-const REQUIRED_ENV = ["DB_HOST", "DB_PORT", "DB_USER", "DB_NAME", "DB_PROTOCOL", "SERVER_PORT", "ENVIRONMENT"];
+const REQUIRED_ENV = ['DB_HOST', 'DB_PORT', 'DB_USER', 'DB_NAME', 'DB_PROTOCOL', 'SERVER_PORT', 'ENVIRONMENT', 'SERVER_SECRET'];
 validateEnvVariables(REQUIRED_ENV);
 
 // Desestructurar process.env para hacer el código más limpio
-const { DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME, DB_PROTOCOL, SERVER_PORT, ENVIRONMENT } = process.env;
+const { DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME, DB_PROTOCOL, SERVER_PORT, ENVIRONMENT, SERVER_SECRET } = process.env;
 
 // Configuración de la base de datos
 const dbConfig: DBConfig = {
     host: DB_HOST as string,
-    port: DB_PORT as string,
+    port: Number(DB_PORT),
     user: DB_USER as string,
     password: DB_PASSWORD as string,
     name: DB_NAME as string,
@@ -48,10 +48,13 @@ const dbConfig: DBConfig = {
 const serverConfig: ServerConfig = {
     port: SERVER_PORT as string,
     env: ENVIRONMENT as string,
+    secret: SERVER_SECRET as string
 };
 
 // Configuración global
-export const env: EnvType = {
+const env: EnvType = {
     db: dbConfig,
     server: serverConfig,
 };
+
+export default env
