@@ -30,6 +30,8 @@
     "express": "4.21.0",
     "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.11.3",
-    "tsx": "^4.19.1"
+    "reflect-metadata": "^0.2.2",
+    "tsx": "^4.19.1",
+    "typeorm": "^0.3.20"
   }
 }
