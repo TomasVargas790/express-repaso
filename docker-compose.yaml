@@ -1,0 +1,11 @@
+services:
+  mysql:
+      image: mysql:5
+      environment:
+        - MYSQL_DATABASE=repaso-express
+        - MYSQL_ROOT_PASSWORD=grandetuco1
+        - MYSQL_PORT=3306
+      ports:
+        - 3306:3306
+      volumes:
+        - ./mysql_data:/var/lib/mysql
