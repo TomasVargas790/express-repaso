@@ -1,9 +1,7 @@
-import express from 'express'
-import "reflect-metadata"
-
-import env from './env'
-import { authMiddleware, loginMiddleware, registerMiddleware } from './auth/service'
-import { headerHandler } from './utils/network'
+import express from 'express';
+import { authMiddleware, loginMiddleware, registerMiddleware } from './auth/service.js';
+import { headerHandler } from './utils/network.js';
+import env from './env.js';
 
 const { server: { port } } = env
 

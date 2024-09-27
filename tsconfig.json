@@ -3,12 +3,12 @@
       /*Base*/
       "target": "ESNext",
       "module": "ESNext",
-      "moduleResolution": "Bundler",
+      "moduleResolution": "Classic",
       "esModuleInterop": true,
       "allowJs": true,
-      "verbatimModuleSyntax": true,
-      "resolveJsonModule": true,
-      "moduleDetection": "force",
+      //"verbatimModuleSyntax": true,
+      //"resolveJsonModule": true,
+      //"moduleDetection": "force",
       "skipLibCheck": true,
       
       "noEmit": true,
@@ -19,5 +19,10 @@
       /*Strictness*/
       "strict": true,
       "noUncheckedIndexedAccess": true,
-   }
+      "useUnknownInCatchVariables": false
+      
+   },
+   "include": [
+      "./**/*.ts"
+   ]
 }

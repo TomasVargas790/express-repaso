@@ -1,5 +1,5 @@
 import { RequestHandler, Response } from 'express'
-import { MESSAGES, STATUS, STATUS_CODES } from './constants'
+import { MESSAGES, STATUS, STATUS_CODES } from './constants.js'
 
 
 export type ResponseWrapper = {

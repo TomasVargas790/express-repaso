@@ -4,7 +4,7 @@
   "description": "Voy a intentar aplicar todo lo que me acuerde sin buscar un tutorial, a lo mucho buscar solo en la documentación oficial de las dependencias",
   "main": "index.js",
   "scripts": {
-    "dev": "node --watch loader.js",
+    "dev": "node --watch --env-file=.env loader.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [

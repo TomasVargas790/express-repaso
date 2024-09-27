@@ -1,22 +1,21 @@
-import env from "../env"
+import env from "../env.js"
 import jwt from 'jsonwebtoken'
-import { connection } from '../db'
 
 const { server: { secret } } = env
 
 const DEFAULT_EXPIRE_TIME = '10m'
 
-export async function verifyCredentials(token: string) {
+/* export async function verifyCredentials(token: string) {
     return queryCredentials(token)
-}
+} */
 
 
-export async function queryCredentials(token: string) {
+/* export async function queryCredentials(token: string) {
     const [username, password] = atob(token).split(':')
     const [, result] = await connection.query(`SELECT Id FROM User WHERE username = ${username} AND password = ${password}`)
 
     return result.length > 0
-}
+} */
 export function signToken(
     payload: string | object | Buffer,
     expiresIn: string = DEFAULT_EXPIRE_TIME

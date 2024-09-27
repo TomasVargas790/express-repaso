@@ -1,5 +1,5 @@
-import { MESSAGES, STATUS, STATUS_CODES } from "../utils/constants"
-import { response } from "../utils/network"
+import { MESSAGES, STATUS, STATUS_CODES } from "../utils/constants.js"
+import { response } from "../utils/network.js"
 import { Response } from 'express'
 
 export function noTokenResponse(res: Response) {
