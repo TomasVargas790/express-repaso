@@ -1,9 +1,9 @@
 {
    "compilerOptions": {
       /*Base*/
-      "target": "ESNext",
-      "module": "ESNext",
-      "moduleResolution": "Classic",
+      "target": "ES2021",
+      "module": "NodeNext",
+      "moduleResolution": "nodenext",
       "esModuleInterop": true,
       "allowJs": true,
       //"verbatimModuleSyntax": true,
@@ -11,7 +11,8 @@
       //"moduleDetection": "force",
       "skipLibCheck": true,
       
-      "noEmit": true,
+      //"noEmit": true,
+      "outDir": "./dist",
       "allowSyntheticDefaultImports": true,
       "emitDecoratorMetadata": true,
       "experimentalDecorators": true,

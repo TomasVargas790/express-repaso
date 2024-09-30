@@ -4,7 +4,7 @@ type DBConfig = {
     user: string;
     password: string;
     name: string;
-    protocol: string;
+    protocol: 'mysql';
 };
 
 type ServerConfig = {
@@ -41,7 +41,7 @@ const dbConfig: DBConfig = {
     user: DB_USER as string,
     password: DB_PASSWORD as string,
     name: DB_NAME as string,
-    protocol: DB_PROTOCOL as string
+    protocol: DB_PROTOCOL as 'mysql'
 };
 
 // Configuración de la API

@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "node --watch --env-file=.env loader.js",
+    "typeorm": "typeorm-ts-node-esm -d .\\src\\db\\data-source.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
