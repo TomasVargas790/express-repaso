@@ -1,4 +1,4 @@
-import { RequestHandler, Response } from 'express'
+import { RequestHandler, Response, json, Express } from 'express'
 import { MESSAGES, STATUS, STATUS_CODES } from './constants.js'
 
 
@@ -32,6 +32,10 @@ export function response({ res, ...response }: ResponseWrapper) {
     return res.status(response.statusCode).json(response)
 }
 
+export const initialMiddlewares = (app: Express) => {
+    app.use(headerHandler)
+    app.use(json())
+}
 
 export const headerHandler: RequestHandler = (_, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
