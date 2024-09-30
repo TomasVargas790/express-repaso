@@ -19,6 +19,15 @@ export function errorResponse(res: Response, payload?: object) {
         res
     })
 }
+export function errorNotFoundResponse(res: Response, payload?: object) {
+    return buildResponse({
+        status: STATUS.ERROR,
+        message: MESSAGES.NOT_FOUND,
+        statusCode: STATUS_CODES.NOT_FOUND,
+        payload,
+        res
+    })
+}
 
 export function successResponse(res: Response, payload?: object) {
     return buildResponse({

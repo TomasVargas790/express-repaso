@@ -19,8 +19,6 @@ const args = () =>
             ...((arg.startsWith('--') && longArgs(arg)) || (arg[0] === '-' && flags(arg)))
         }), {});
 
-console.log(args());
-
 (async () => {
     try {
         const currentArgs = args();
