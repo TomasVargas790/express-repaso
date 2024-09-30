@@ -1,8 +1,8 @@
 import "reflect-metadata"
+import '../../utils/logger.js'
 import { DataSource } from "typeorm"
 import env from '../../env.js'
 import { connectWithRetry } from "./utils.js"
-import '../../utils/logger.js'
 
 const { db: { host,
     name: database,

@@ -7,10 +7,10 @@ export class Brand {
     @PrimaryGeneratedColumn()
         id!: number
 
-    @Column()
+    @Column({ unique: true })
         name!: string
 
-    @Column()
+    @Column({ unique: true })
         code!: string
 
     @OneToMany(() => Product, (product) => product.brand)

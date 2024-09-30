@@ -4,11 +4,12 @@
   "description": "Voy a intentar aplicar todo lo que me acuerde sin buscar un tutorial, a lo mucho buscar solo en la documentación oficial de las dependencias",
   "main": "index.js",
   "scripts": {
-    "dev": "node --watch loader.js",
+    "dev": "node --watch loader.js --index",
     "typeorm": "typeorm-ts-node-esm -d ./src/db/connection/data-source.ts",
     "typeorm:generate": "npm run typeorm migration:generate --timestamp",
     "typeorm:run": "npm run typeorm migration:run",
     "typeorm:revert": "npm run typeorm migration:revert",
+    "typeorm:delete": "node loader.js --delete",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   
