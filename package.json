@@ -4,8 +4,11 @@
   "description": "Voy a intentar aplicar todo lo que me acuerde sin buscar un tutorial, a lo mucho buscar solo en la documentación oficial de las dependencias",
   "main": "index.js",
   "scripts": {
-    "dev": "node --watch --env-file=.env loader.js",
-    "typeorm": "typeorm-ts-node-esm -d .\\src\\db\\data-source.ts",
+    "dev": "node --watch loader.js",
+    "typeorm": "typeorm-ts-node-esm -d ./src/db/connection/data-source.ts",
+    "typeorm:generate": "typeorm-ts-node-esm -d ./src/db/connection/data-source.ts migration:generate",
+    "typeorm:run": "typeorm-ts-node-esm -d ./src/db/connection/data-source.ts migration:run",
+    "typeorm:revert": "typeorm-ts-node-esm -d ./src/db/connection/data-source.ts migration:revert",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -26,6 +29,7 @@
   "type": "module",
   "dependencies": {
     "@types/jsonwebtoken": "^9.0.7",
+    "colors": "^1.4.0",
     "express": "4.21.0",
     "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.11.3",

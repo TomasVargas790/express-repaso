@@ -4,6 +4,7 @@ import { authMiddleware, loginMiddleware, registerMiddleware } from './auth/serv
 import { initialMiddlewares } from './utils/network.js';
 import env from './env.js';
 
+
 const { server: { port } } = env
 
 const app = express()
@@ -16,4 +17,4 @@ app.use(authMiddleware)
 
 app.use('/', (_, res) => res.send('oa'))
 
-app.listen(port, () => console.log(`[SERVER RUNNING IN PORT ${port}]`))
+app.listen(port, () => logger.info(`[SERVER RUNNING IN PORT ${port}]`))

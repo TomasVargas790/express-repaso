@@ -1,4 +1,5 @@
 import { config } from "dotenv";
+
 config()
 type DBConfig = {
     host: string;
@@ -23,7 +24,7 @@ type EnvType = {
 const validateEnvVariables = (envVariables: string[]): void => {
     envVariables.forEach((variable) => {
         if (!process.env[variable]) {
-            console.error(`Error: ${variable} is missing in the environment.`);
+            logger.error(`Error: ${variable} is missing in the environment.`);
             process.exit(1);
         }
     });
