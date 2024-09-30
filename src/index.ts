@@ -1,9 +1,9 @@
 import "reflect-metadata"
+import './utils/logger.js'
 import express from 'express';
 import { authMiddleware, loginMiddleware, registerMiddleware } from './auth/service.js';
 import { initialMiddlewares } from './utils/network.js';
 import env from './env.js';
-
 
 const { server: { port } } = env
 

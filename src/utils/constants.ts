@@ -8,7 +8,8 @@ export enum MESSAGES {
     BAD_REQUEST = 'Bad Request :/',
     BAD_TOKEN = 'Invalid Token',
     NO_TOKEN = 'No token detected',
-    SUCCESS = 'Success'
+    SUCCESS = 'Success',
+    DUPLICATE = 'Duplicate',
 }
 
 export enum STATUS_CODES {

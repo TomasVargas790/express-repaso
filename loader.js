@@ -8,7 +8,7 @@ import 'colors'
         register("ts-node/esm", pathToFileURL("./"));
 
         // Import and run your main application file
-        await import('./src/utils/logger.ts');
+        //await import('./src/utils/logger.ts');
         await import('./src/index.ts');
     } catch (error) {
         console.error("Error while loading the application:".red, error);

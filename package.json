@@ -6,11 +6,12 @@
   "scripts": {
     "dev": "node --watch loader.js",
     "typeorm": "typeorm-ts-node-esm -d ./src/db/connection/data-source.ts",
-    "typeorm:generate": "typeorm-ts-node-esm -d ./src/db/connection/data-source.ts migration:generate",
-    "typeorm:run": "typeorm-ts-node-esm -d ./src/db/connection/data-source.ts migration:run",
-    "typeorm:revert": "typeorm-ts-node-esm -d ./src/db/connection/data-source.ts migration:revert",
+    "typeorm:generate": "npm run typeorm migration:generate --timestamp",
+    "typeorm:run": "npm run typeorm migration:run",
+    "typeorm:revert": "npm run typeorm migration:revert",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  
   "keywords": [
     "express",
     "node"

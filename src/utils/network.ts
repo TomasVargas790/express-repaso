@@ -10,25 +10,37 @@ export type ResponseWrapper = {
     payload?: object
 }
 
-export function errorResponse(res: Response) {
-    return response({
+export function errorResponse(res: Response, payload?: object) {
+    return buildResponse({
         status: STATUS.ERROR,
         message: MESSAGES.BAD_REQUEST,
         statusCode: STATUS_CODES.BAD_REQUEST,
+        payload,
         res
     })
 }
 
-export function successResponse(res: Response) {
-    return response({
+export function successResponse(res: Response, payload?: object) {
+    return buildResponse({
         status: STATUS.SUCCESS,
         message: MESSAGES.SUCCESS,
         statusCode: STATUS_CODES.SUCCESS,
+        payload,
         res
     })
 }
 
-export function response({ res, ...response }: ResponseWrapper) {
+export function successInsertResponse(res: Response, payload?: object) {
+    return buildResponse({
+        status: STATUS.SUCCESS,
+        message: MESSAGES.SUCCESS,
+        statusCode: STATUS_CODES.SUCCESS_CREATION,
+        payload,
+        res
+    })
+}
+
+export function buildResponse({ res, ...response }: ResponseWrapper) {
     return res.status(response.statusCode).json(response)
 }
 
