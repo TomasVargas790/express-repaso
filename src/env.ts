@@ -1,3 +1,5 @@
+import { config } from "dotenv";
+config()
 type DBConfig = {
     host: string;
     port: number;
