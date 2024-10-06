@@ -11,8 +11,8 @@ export function connectWithRetry(AppDataSource: DataSource) {
             logger.info('[DATABASE CONNECTED]');
         })
         .catch((error) => {
-            logger.warn(`[DATABASE ATTEMPT]>> Attempt ${retryAttempts + 1} of ${MAX_RETRIES}`);
-            logger.error('[ERROR DATABASE CONNECTION]>>', error);
+            logger.warn(`[DATABASE CONNECTION ATTEMPT]>> Attempt ${retryAttempts + 1} of ${MAX_RETRIES}`);
+            logger.error('[DATABASE CONNECTION ERROR]>>', error);
             retryAttempts++;
 
             if (retryAttempts < MAX_RETRIES && !AppDataSource.isInitialized) {

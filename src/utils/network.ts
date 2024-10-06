@@ -49,8 +49,8 @@ export function successInsertResponse(res: Response, payload?: object) {
     })
 }
 
-export function buildResponse({ res, ...response }: ResponseWrapper) {
-    return res.status(response.statusCode).json(response)
+export function buildResponse({ res, payload, ...response }: ResponseWrapper) {
+    return res.status(response.statusCode).json({ ...response, ...payload })
 }
 
 export const initialMiddlewares = (app: Express) => {

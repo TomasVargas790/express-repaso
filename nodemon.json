@@ -1,0 +1,10 @@
+{
+    "verbose": true,
+    "watch": [
+        "src"
+    ],
+    "ext": "ts",
+    "ignore": [],
+    "delay": "700",
+    "exec": "tsc && tsc-alias && node dist/index.js"
+}

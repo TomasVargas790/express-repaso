@@ -38,7 +38,7 @@ validateEnvVariables(REQUIRED_ENV);
 const { DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME, DB_PROTOCOL, SERVER_PORT, ENVIRONMENT, SERVER_SECRET } = process.env;
 
 // Configuración de la base de datos
-const dbConfig: DBConfig = {
+export const db: DBConfig = {
     host: DB_HOST as string,
     port: Number(DB_PORT),
     user: DB_USER as string,
@@ -48,7 +48,7 @@ const dbConfig: DBConfig = {
 };
 
 // Configuración de la API
-const serverConfig: ServerConfig = {
+export const server: ServerConfig = {
     port: SERVER_PORT as string,
     env: ENVIRONMENT as string,
     secret: SERVER_SECRET as string
@@ -56,8 +56,8 @@ const serverConfig: ServerConfig = {
 
 // Configuración global
 const env: EnvType = {
-    db: dbConfig,
-    server: serverConfig,
+    db,
+    server,
 };
 
 export default env

@@ -1,29 +1,47 @@
 {
    "compilerOptions": {
-      /*Base*/
-      "target": "ES2021",
+      "target": "ES2022",
       "module": "NodeNext",
-      "moduleResolution": "nodenext",
+      "moduleResolution": "NodeNext",
       "esModuleInterop": true,
-      "allowJs": true,
-      //"verbatimModuleSyntax": true,
-      //"resolveJsonModule": true,
-      //"moduleDetection": "force",
+      //"allowJs": true,
+      "resolveJsonModule": true,
+      "moduleDetection": "force",
       "skipLibCheck": true,
-      
       //"noEmit": true,
       "outDir": "./dist",
+      //"outFile": "./dist/index.js",
+      //"sourceMap": true,
+      "lib": [
+         "ES2022"
+      ],
       "allowSyntheticDefaultImports": true,
+      //"allowImportingTsExtensions": true,
       "emitDecoratorMetadata": true,
       "experimentalDecorators": true,
-
-      /*Strictness*/
       "strict": true,
       "noUncheckedIndexedAccess": true,
-      "useUnknownInCatchVariables": false
-      
+      "useUnknownInCatchVariables": false,
+      "baseUrl": "src",
+      "paths": {
+         "@db/*": [
+            "db/*"
+         ],
+         "@api/*": [
+            "api/*"
+         ],
+         "@utils/*": [
+            "utils/*"
+         ],
+         "@auth/*": [
+            "auth/*"
+         ]
+      }
    },
    "include": [
-      "./**/*.ts"
+      "./src/**/*.ts"
+   ],
+   "exclude": [
+      "./dist/**/*" // This is what fixed it!   
    ]
 }

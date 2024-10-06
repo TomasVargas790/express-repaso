@@ -1,16 +1,17 @@
 import "reflect-metadata"
 import '../../utils/logger.js'
 import { DataSource } from "typeorm"
-import env from '../../env.js'
+import { db } from '../../env.js'
 import { connectWithRetry } from "./utils.js"
+import entities from '@db/entity/index.js'
 
-const { db: { host,
+const { host,
     name: database,
     password,
     port,
     protocol: type,
     user: username
-} } = env
+} = db
 
 export const AppDataSource = new DataSource({
     type,
@@ -21,8 +22,8 @@ export const AppDataSource = new DataSource({
     database,
     synchronize: true,
     logging: false,
-    entities: ["src/db/entity/*.{ts,js}"],
-    migrations: ["src/db/migration/*.{ts,js}"],
+    entities,
+    migrations: ["./db/migration/*.{js,ts}"],
     subscribers: [],
     connectTimeout: 10000
 })

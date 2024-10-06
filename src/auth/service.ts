@@ -3,7 +3,7 @@ import 'reflect-metadata'
 import type { RequestHandler } from 'express';
 import { errorNotFoundResponse, errorResponse, successResponse } from '../utils/network.js'
 import { badTokenResponse, duplicateErrorResponse, noTokenResponse } from './utils.js';
-import { signToken, verifyToken } from './controller.js';
+import { signToken, verifyToken } from './utils.js';
 import { AppDataSource } from '../db/connection/data-source.js'
 import { User } from '../db/entity/User.js';
 
