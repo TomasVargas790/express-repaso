@@ -11,7 +11,7 @@ const DEFAULT_EXPIRE_TIME = '10m'
 export function noTokenResponse(res: Response) {
     return buildResponse({
         res,
-        status: STATUS.ERROR,
+        state: STATUS.ERROR,
         statusCode: STATUS_CODES.BAD_AUTHENTICATION,
         message: MESSAGES.NO_TOKEN
     })
@@ -20,7 +20,7 @@ export function noTokenResponse(res: Response) {
 export function badTokenResponse(res: Response) {
     return buildResponse({
         res,
-        status: STATUS.ERROR,
+        state: STATUS.ERROR,
         statusCode: STATUS_CODES.BAD_AUTHENTICATION,
         message: MESSAGES.BAD_TOKEN
     })
@@ -29,7 +29,7 @@ export function badTokenResponse(res: Response) {
 export function duplicateErrorResponse(res: Response) {
     return buildResponse({
         res,
-        status: STATUS.ERROR,
+        state: STATUS.ERROR,
         statusCode: STATUS_CODES.BAD_REQUEST,
         message: MESSAGES.DUPLICATE
     })

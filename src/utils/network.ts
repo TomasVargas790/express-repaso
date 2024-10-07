@@ -4,7 +4,7 @@ import { MESSAGES, STATUS, STATUS_CODES } from './constants.js'
 
 export type ResponseWrapper = {
     res: Response,
-    status: STATUS,
+    state: STATUS,
     statusCode: STATUS_CODES,
     message: MESSAGES,
     payload?: object
@@ -12,16 +12,16 @@ export type ResponseWrapper = {
 
 export function errorResponse(res: Response, payload?: object) {
     return buildResponse({
-        status: STATUS.ERROR,
-        message: MESSAGES.BAD_REQUEST,
-        statusCode: STATUS_CODES.BAD_REQUEST,
+        state: STATUS.ERROR,
+        message: MESSAGES.INTERNAL_ERROR,
+        statusCode: STATUS_CODES.INTERNAL_ERROR,
         payload,
         res
     })
 }
 export function errorNotFoundResponse(res: Response, payload?: object) {
     return buildResponse({
-        status: STATUS.ERROR,
+        state: STATUS.ERROR,
         message: MESSAGES.NOT_FOUND,
         statusCode: STATUS_CODES.NOT_FOUND,
         payload,
@@ -31,7 +31,7 @@ export function errorNotFoundResponse(res: Response, payload?: object) {
 
 export function successResponse(res: Response, payload?: object) {
     return buildResponse({
-        status: STATUS.SUCCESS,
+        state: STATUS.SUCCESS,
         message: MESSAGES.SUCCESS,
         statusCode: STATUS_CODES.SUCCESS,
         payload,
@@ -41,7 +41,7 @@ export function successResponse(res: Response, payload?: object) {
 
 export function successInsertResponse(res: Response, payload?: object) {
     return buildResponse({
-        status: STATUS.SUCCESS,
+        state: STATUS.SUCCESS,
         message: MESSAGES.SUCCESS,
         statusCode: STATUS_CODES.SUCCESS_CREATION,
         payload,
@@ -50,7 +50,7 @@ export function successInsertResponse(res: Response, payload?: object) {
 }
 
 export function buildResponse({ res, payload, ...response }: ResponseWrapper) {
-    return res.status(response.statusCode).json({ ...response, ...payload })
+    return res.status(response.statusCode).json({ ...response, payload })
 }
 
 export const initialMiddlewares = (app: Express) => {
