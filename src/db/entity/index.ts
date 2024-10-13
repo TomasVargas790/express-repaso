@@ -1,10 +1,10 @@
-import { User } from "./User.js";
-import { Brand } from "./Brand.js";
-import { Category } from '@db/entity/Category.js';
-import { Customer } from "./Customer.js";
-import { Order } from "./Order.js";
-import { Product } from "./Product.js";
-import { ProductVersion } from "./ProductVersion.js";
+import { User } from './User';
+import { Brand } from './Brand';
+import { Category } from '@db/entity/Category';
+import { Customer } from './Customer';
+import { Order } from './Order';
+import { Product } from './Product';
+import { ProductVersion } from './ProductVersion';
 
 export default [
     User,

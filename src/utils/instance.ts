@@ -1,4 +1,4 @@
-// import { FindOptions, FindOptionsWhere, Repository } from "typeorm";
+// import { FindOptions, FindOptionsWhere, Repository } from 'typeorm';
 
 // export abstract class Instance<T extends Repository<T>> {
 

@@ -1,6 +1,6 @@
-import { Column, Entity, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn, Relation } from "typeorm"
-import { Customer } from "./Customer.js"
-import { ProductVersion } from "./ProductVersion.js"
+import { Column, Entity, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn, Relation } from 'typeorm'
+import { Customer } from './Customer'
+import { ProductVersion } from './ProductVersion'
 
 type StatusType = 'PENDIENTE PAGO' | 'PENDIENTE ENTREGA' | 'PENDIENTE PAGO/ENTREGA' | 'FINALIZADO'
 
@@ -18,7 +18,7 @@ export class Order {
     @ManyToOne(() => Customer)
         customer!: Relation<Customer>
 
-    @ManyToMany(() => ProductVersion)
+    @ManyToMany(() => ProductVersion,{cascade:true})
     @JoinTable({name:'order_product'})
         products!: Relation<ProductVersion>[]
 }

@@ -1,7 +1,7 @@
-import { MESSAGES, STATUS, STATUS_CODES } from "../utils/constants.js"
-import { buildResponse } from "../utils/network.js"
+import { MESSAGES, STATUS, STATUS_CODES } from '../utils/constants'
+import { buildResponse } from '../utils/network'
 import { type Response } from 'express'
-import env from "../env.js"
+import env from '../env'
 import jwt from 'jsonwebtoken'
 
 const { server: { secret } } = env

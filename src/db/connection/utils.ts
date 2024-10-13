@@ -1,4 +1,4 @@
-import { DataSource } from "typeorm";
+import { DataSource } from 'typeorm';
 
 let retryAttempts = 0;
 const MAX_RETRIES = 5;

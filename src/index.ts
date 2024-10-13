@@ -1,19 +1,35 @@
-import "reflect-metadata"
-import './utils/logger.js'
+import 'reflect-metadata'
+import '@utils/logger'
 import express from 'express';
-import { authMiddleware } from './auth/service.js';
-import userMiddleware from './auth/controller.js';
-import { errorNotFoundResponse, initialMiddlewares } from './utils/network.js';
-import env from './env.js';
-import mainRouter from "./api/index.js";
+import { authMiddleware } from './auth/service';
+import userMiddleware from './auth/controller';
+import { errorNotFoundResponse, initialMiddlewares } from './utils/network';
+import env from './env';
+import mainRouter from './api/index';
 
 const { server: { port } } = env
 
 const app = express()
 initialMiddlewares(app)
 
-app.use(userMiddleware)//Register - Login
-app.use(authMiddleware)//Validate JWT
+app.use(userMiddleware)
+app.use(authMiddleware)
+app.use((req, _, next) => {
+    const { url,
+        params,
+        query,
+        body,
+        method
+    } = req
+    console.log({
+        url,
+        params,
+        query,
+        body,
+        method
+    });
+    next()
+})
 mainRouter(app)
 
 app.use((_, res) => errorNotFoundResponse(res))

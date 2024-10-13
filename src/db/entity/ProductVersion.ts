@@ -1,5 +1,5 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn, Relation, } from "typeorm"
-import { Product } from "./Product.js"
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn, Relation, } from 'typeorm'
+import { Product } from './Product'
 
 @Entity()
 export class ProductVersion {

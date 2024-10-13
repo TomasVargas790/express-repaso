@@ -1,11 +1,11 @@
 
 import 'reflect-metadata'
 import type { RequestHandler } from 'express';
-import { errorNotFoundResponse, errorResponse, successResponse } from '../utils/network.js'
-import { badTokenResponse, duplicateErrorResponse, noTokenResponse } from './utils.js';
-import { signToken, verifyToken } from './utils.js';
-import { AppDataSource } from '../db/connection/data-source.js'
-import { User } from '../db/entity/User.js';
+import { errorNotFoundResponse, errorResponse, successResponse } from '../utils/network'
+import { badTokenResponse, duplicateErrorResponse, noTokenResponse } from './utils';
+import { signToken, verifyToken } from './utils';
+import { AppDataSource } from '../db/connection/data-source'
+import { User } from '../db/entity/User';
 
 
 export const authMiddleware: RequestHandler = async (req, res, next) => {

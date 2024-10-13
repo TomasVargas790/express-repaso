@@ -1,7 +1,7 @@
-import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, Relation } from "typeorm"
-import { Category } from "./Category.js"
-import { Brand } from "./Brand.js"
-import { ProductVersion } from "./ProductVersion.js"
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, Relation } from 'typeorm'
+import { Category } from './Category'
+import { Brand } from './Brand'
+import { ProductVersion } from './ProductVersion'
 
 @Entity()
 export class Product {
@@ -12,7 +12,7 @@ export class Product {
     @Column()
         name!: string
 
-    @Column()
+    @Column({ unique: true })
         code!: string
 
     @ManyToOne(() => Category, category => category.products)

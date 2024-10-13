@@ -1,5 +1,5 @@
 import { RequestHandler, Response, json, Express } from 'express'
-import { MESSAGES, STATUS, STATUS_CODES } from './constants.js'
+import { MESSAGES, STATUS, STATUS_CODES } from './constants'
 
 
 export type ResponseWrapper = {
@@ -59,10 +59,10 @@ export const initialMiddlewares = (app: Express) => {
 }
 
 export const headerHandler: RequestHandler = (_, res, next) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "*");
-    res.header("Access-Control-Expose-Headers", "*");
-    res.header("Access-Control-Allow-Methods", "GET,POST,PATCH,DELETE");
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', '*');
+    res.header('Access-Control-Expose-Headers', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,POST,PATCH,DELETE');
     res.header('Access-Control-Allow-Credentials', 'true');
     res.header('Content-Type', 'application/json; charset=utf-8');
     next();

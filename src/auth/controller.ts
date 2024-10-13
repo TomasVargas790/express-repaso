@@ -1,5 +1,5 @@
-import { Router } from "express";
-import { loginMiddleware, registerMiddleware } from "./service.js";
+import { Router } from 'express';
+import { loginMiddleware, registerMiddleware } from './service';
 
 const router = Router();
 

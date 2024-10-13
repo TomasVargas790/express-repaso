@@ -1,10 +1,10 @@
-import { type RequestHandler } from "express"
-import { AppDataSource } from "@db/connection/data-source.js"
-import { Brand } from "@db/entity/Brand.js"
-import { errorNotFoundResponse, errorResponse, successInsertResponse, successResponse } from "@utils/network.js"
-import { getIdsFromTypeOrm } from "@utils/dml.js"
-import { TYPEORM_ERROR_CODES } from "@utils/constants.js"
-import { duplicateErrorResponse } from "@auth/utils.js"
+import { type RequestHandler } from 'express'
+import { AppDataSource } from '@db/connection/data-source'
+import { Brand } from '@db/entity/Brand'
+import { errorNotFoundResponse, errorResponse, successInsertResponse, successResponse } from '@utils/network'
+import { getIdsFromTypeOrm } from '@utils/dml'
+import { TYPEORM_ERROR_CODES } from '@utils/constants'
+import { duplicateErrorResponse } from '@auth/utils'
 
 const brandRepository = AppDataSource.getRepository(Brand)
 
