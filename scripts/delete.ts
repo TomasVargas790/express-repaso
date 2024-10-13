@@ -1,3 +1,5 @@
+import '../src/helper'
+
 import { AppDataSource as migrator } from '@db/connection/data-source';
 
 const revertAllMigrations = async () => {
@@ -19,6 +21,7 @@ const revertAllMigrations = async () => {
             await migrator.undoLastMigration({ transaction: 'all' });
             migrations.pop();
         }
+        logger.debug('[ROLLBACKED EVERY MIGRATION]')
         process.exit(1)
     } catch (error) {
         logger.error('[ERROR ROLLBACKING EVERY MIGRATION]', error)

@@ -4,7 +4,7 @@
   "description": "Voy a intentar aplicar todo lo que me acuerde sin buscar un tutorial, a lo mucho buscar solo en la documentación oficial de las dependencias",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node src/index.ts",
+    "dev": "nodemon src/index.ts",
     "typeorm": "ts-node ./node_modules/typeorm/cli.js -d ./src/db/connection/data-source.ts",
     "typeorm:generate": "npm run typeorm migration:generate ./src/db/migration/ --timestamp",
     "typeorm:run": "npm run typeorm migration:run",
@@ -34,6 +34,7 @@
     "express": "4.21.0",
     "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.11.3",
+    "nodemon": "^3.1.7",
     "reflect-metadata": "^0.2.2",
     "ts-node": "^10.9.2",
     "typeorm": "^0.3.20"

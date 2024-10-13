@@ -1,5 +1,4 @@
-import 'reflect-metadata'
-import '@utils/logger'
+import './helper'
 import express from 'express';
 import { authMiddleware } from './auth/service';
 import userMiddleware from './auth/controller';

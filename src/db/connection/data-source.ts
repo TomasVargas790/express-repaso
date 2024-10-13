@@ -1,7 +1,6 @@
-import 'reflect-metadata'
-import '../../utils/logger'
+import '../../helper'
 import { DataSource } from 'typeorm'
-import { db } from '../../env'
+import { db } from '@/env'
 import { connectWithRetry } from './utils'
 import { entities, migrations } from './helper'
 
