@@ -9,3 +9,10 @@ services:
         - 3306:3306
       volumes:
         - ./mysql_data:/var/lib/mysql
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      - MYSQL_ROOT_PASSWORD=grandetuco1
+      - PMA_HOST=mysql
+    ports:
+      - 8080:80
