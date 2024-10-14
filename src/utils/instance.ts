@@ -1,65 +1,110 @@
-// import { FindOptions, FindOptionsWhere, Repository } from 'typeorm';
+import { FindOptionsWhere, Repository, } from 'typeorm';
+import { getIdsFromTypeOrm } from './dml';
+import { QueryDeepPartialEntity } from 'typeorm/query-builder/QueryPartialEntity';
+import { Request, Response } from 'express';
+import { errorNotFoundResponse, errorResponse, successInsertResponse, successResponse } from './network';
+import { duplicateErrorResponse } from '@/auth/utils';
+import { TYPEORM_ERROR_CODES } from './constants';
 
-// export abstract class Instance<T extends Repository<T>> {
 
-//     model: Repository<T>;
+export abstract class Instance<T> {
 
-//     constructor(model: Repository<T>) {
-//         this.model = model;
-//     }
+    model: Repository<T>;
 
-//     async getAll(): Promise<T[]> {
-//         return await this.model.find() as T[];
-//     }
+    constructor(model: Repository<T>) {
+        this.model = model;
+    }
 
-//     async getById(id: string)/* : Promise<T | (undefined | null)> */ {
-//         return await this.model.findBy([{ id }] as FindOptionsWhere<T>) /* as T | (undefined | null) */;
-//     }
+    async get(req: Request, res: Response): Promise<unknown> {
+        try {
+            const id = Number(req.params.id);
+            if (!id) {
+                return successResponse(res, await this.model.find())
+            }
 
-//     async getByFields(where: any): Promise<T[] | (undefined | null)> {
-//         return await this.model.findAll(where) as T[] | (undefined | null);
-//     }
+            const result = await this.model.findOne({ where: { id } as unknown as FindOptionsWhere<T> });
+            if (!result) {
+                return errorNotFoundResponse(res)
+            }
+            return successResponse(res, result)
+        } catch (error) {
+            console.error(error);
+            errorResponse(res)
+        }
+    }
 
-//     async count(where?: any): Promise<number> {
-//         return await this.model.count({ where });
-//     }
+    async count(req: Request, res: Response): Promise<unknown> {
+        try {
+            const result = await this.model.count({ where });
+            return successResponse(res, result)
+        } catch (error) {
+            console.error(error);
+            errorResponse(res)
+        }
+        return await this.model.count({ where });
+    }
 
-//     async getWithPagination(page: number, pageSize: number, where?: any): Promise<{ rows: T[], count: number }> {
-//         const limit = pageSize;
-//         const offset = (page - 1) * pageSize;
+    async getWithPagination(page: number, pageSize: number, where?: FindOptionsWhere<T>): Promise<{ rows: T[], count: number }> {
+        const take = pageSize;
+        const skip = (page - 1) * pageSize;
 
-//         const rows = await this.model.findAll({ where, limit, offset }) as T[];
-//         const count = await this.model.count({ where });
+        const rows = await this.model.find({ where, take, skip }) as T[];
+        const count = await this.model.count({ where });
 
-//         return { rows, count };
-//     }
+        return { rows, count };
+    }
 
-//     async insert(data: T): Promise<T> {
-//         return await this.model.create(data) as T;
-//     }
+    async insert(req: Request, res: Response): Promise<unknown> {
+        try {
+            const input = <QueryDeepPartialEntity<T>[]>req.body[this.model.metadata.name] ?? <QueryDeepPartialEntity<T>>req.body;
+            const id = getIdsFromTypeOrm(await this.model.insert(input));
+            return successInsertResponse(res, { id })
+        } catch (error) {
+            console.error(error);
+            if (error.code === TYPEORM_ERROR_CODES.ER_DUP_ENTRY) {
+                return duplicateErrorResponse(res)
+            }
+            return errorResponse(res)
+        }
 
-//     async bulkInsert(data: T[]): Promise<T[]> {
-//         return await this.model.bulkCreate(data, { validate: true }) as T[];
-//     }
+    }
 
-//     async update(id: string, data: Partial<T>): Promise<T> {
-//         const row = await this.getById(id)
-//         if (!row) throw Error('No se a encontrado ese registro')
-//         return await row.update(data)
-//     }
+    async update(req: Request, res: Response): Promise<unknown> {
+        try {
+            const id = Number(req.params.id);
+            const input = <QueryDeepPartialEntity<T>>req.body
+            const result = await this.model.update(id, input);
+            return successInsertResponse(res, { rowsAffected: result?.affected })
+        } catch (error) {
+            console.error(error);
+            return errorResponse(res)
+        }
+    }
 
-//     async bulkUupdate(data: Partial<T>, where: any): Promise<[number, T[]]> {
-//         return await this.model.update<T>(data, { where, returning: true });
-//     }
+    async delete(req: Request, res: Response): Promise<unknown> {
+        try {
+            const id = Number(req.params.id);
+            const { soft } = req.query;
+            if (soft) return (await this.model.softDelete(id)).affected;
+            const result = await this.model.delete(id);
+            return successResponse(res, { rowsAffected: result?.affected })
+        } catch (error) {
+            console.error(error);
+            return errorResponse(res)
+        }
+    }
 
-//     async delete(where: any): Promise<number> {
-//         return await this.model.destroy({ where });
-//     }
+    async restore(req: Request, res: Response): Promise<unknown> {
 
-//     async restore(where: any): Promise<[number, T[]]> {
-//         await this.model.restore({ where });
-//         const { count, rows } = await this.model.findAndCountAll<T>({ where });
+        try {
+            const id = Number(req.params.id);
+            await this.model.restore(id);
+            const [result, affected] = await this.model.findAndCountBy({ id } as unknown as FindOptionsWhere<T>);
+            return successResponse(res, { result, affected })
+        } catch (error) {
+            console.error(error);
+            return errorResponse(res)
+        }
 
-//         return [count, rows];
-//     }
-// }
+    }
+}

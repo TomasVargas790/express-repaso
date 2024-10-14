@@ -1,11 +1,10 @@
 import { Router } from 'express';
-import { deleteCategory, getCategory, insertCategory, updateCategory } from './service';
+import CRUD from './service';
+import { useRouter } from '@/utils/crud';
 
+const crud = new CRUD();
 const router = Router()
-router.get('/', getCategory);
-router.get('/:id', getCategory);
-router.post('/', insertCategory);
-router.patch('/:id', updateCategory);
-router.delete('/:id', deleteCategory);
+
+useRouter(router, crud);
 
 export default router

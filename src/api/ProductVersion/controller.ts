@@ -1,11 +1,10 @@
 import { Router } from 'express';
-import { deleteProductVersion, getProductVersion, insertProductVersion, updateProductVersion } from './service';
+import CRUD from './service';
+import { useRouter } from '@/utils/crud';
 
+const crud = new CRUD();
 const router = Router()
-router.get('/', getProductVersion);
-router.get('/:id', getProductVersion);
-router.post('/', insertProductVersion);
-router.patch('/:id', updateProductVersion);
-router.delete('/:id', deleteProductVersion);
+
+useRouter(router, crud);
 
 export default router

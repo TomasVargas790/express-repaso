@@ -1,11 +1,10 @@
 import { Router } from 'express';
-import { deleteBrand, getBrand, insertBrand, updateBrand } from './service';
+import CRUD from './service';
+import { useRouter } from '@/utils/crud';
 
+const crud = new CRUD();
 const router = Router()
-router.get('/', getBrand);
-router.get('/:id', getBrand);
-router.post('/', insertBrand);
-router.patch('/:id', updateBrand);
-router.delete('/:id', deleteBrand);
+
+useRouter(router, crud);
 
 export default router
