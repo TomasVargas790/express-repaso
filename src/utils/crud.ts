@@ -1,10 +1,10 @@
-import { Repository, ObjectLiteral } from "typeorm";
-import { successResponse, errorNotFoundResponse, errorResponse, successInsertResponse } from "./network";
-import { Request, Response, Router } from "express";
-import { Instance } from "./instance_bk";
-import { duplicateErrorResponse } from "@/auth/utils";
-import { QueryDeepPartialEntity } from "typeorm/query-builder/QueryPartialEntity";
-import { TYPEORM_ERROR_CODES } from "./constants";
+import { Repository, ObjectLiteral } from 'typeorm';
+import { successResponse, errorNotFoundResponse, errorResponse, successInsertResponse } from './network';
+import { Request, Response, Router } from 'express';
+import { Instance } from './instance_bk';
+import { duplicateErrorResponse } from '@/auth/utils';
+import { QueryDeepPartialEntity } from 'typeorm/query-builder/QueryPartialEntity';
+import { TYPEORM_ERROR_CODES } from './constants';
 
 export class CRUD<T extends ObjectLiteral> {
 

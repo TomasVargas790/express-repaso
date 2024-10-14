@@ -1,6 +1,6 @@
-import { AppDataSource } from "@/db/connection/data-source";
-import { Order } from "@/db/entity/Order";
-import { CRUD } from "@/utils/crud";
+import { AppDataSource } from '@/db/connection/data-source';
+import { Order } from '@/db/entity/Order';
+import { CRUD } from '@/utils/crud';
 
 const orderRepository = AppDataSource.getRepository(Order)
 
