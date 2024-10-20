@@ -37,6 +37,8 @@ export class Instance<T extends ObjectLiteral> {
     }
 
     async insert(data: QueryDeepPartialEntity<T> | QueryDeepPartialEntity<T>[]): Promise<string[]> {
+        console.log(data);
+        
         const result = await this.model.insert(data)
         return getIdsFromTypeOrm(result);
     }

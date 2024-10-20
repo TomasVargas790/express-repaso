@@ -6,9 +6,10 @@ import { User } from '../entity/User'
 import { Customer } from '../entity/Customer'
 import { ProductVersion } from '../entity/ProductVersion'
 import { Order } from '../entity/Order'
+import { OrderProduct } from '../entity/OrderProduct'
+import { Migration1729401526096 } from '../migration/1729401526096-migration'
 
-import { Migration1728852989478 } from '../migration/1728852989478-migration'
 
-export const entities = [Product, ProductVersion, Brand, Category, User, Customer, Order,]
+export const entities = [Product, ProductVersion, Brand, Category, User, Customer, Order, OrderProduct]
 
-export const migrations = [Migration1728852989478]
+export const migrations = [Migration1729401526096]

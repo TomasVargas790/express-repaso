@@ -9,7 +9,9 @@
     "typeorm:generate": "npm run typeorm migration:generate ./src/db/migration/ --timestamp",
     "typeorm:run": "npm run typeorm migration:run",
     "typeorm:revert": "npm run typeorm migration:revert",
-    "typeorm:delete": "ts-node scripts/delete.ts",
+    "typeorm:delete": "ts-node scripts/delete.ts",    
+    "typeorm:seed": "ts-node scripts/seed.ts",    
+    "typeorm:empty": "ts-node scripts/empty.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [

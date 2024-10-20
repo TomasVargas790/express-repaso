@@ -10,11 +10,17 @@ export class CRUD<T extends ObjectLiteral> {
 
     controller: Instance<T>
     model: Repository<T>
+    name: string
 
     constructor(model: Repository<T>) {
 
         this.controller = new Instance(model)
-        this.model = model
+
+        this.model = this.controller.model
+        const name = this.model.target.toString().toLowerCase()
+        this.name = name.split(' {')?.[0]?.replace('class ', '') + 's' as string
+        console.log(this.name);
+        
         this.get = this.get.bind(this);
         this.post = this.post.bind(this);
         this.patch = this.patch.bind(this);
@@ -41,7 +47,10 @@ export class CRUD<T extends ObjectLiteral> {
 
     async post(req: Request, res: Response) {
         try {
-            const input = <QueryDeepPartialEntity<T>[]>req.body[this.controller.model.metadata.name] ?? <QueryDeepPartialEntity<T>>req.body;
+            console.log(req.body[this.name]);
+            const input = <QueryDeepPartialEntity<T>[]>req.body[this.name] ?? <QueryDeepPartialEntity<T>>req.body;
+            console.log(input);
+            
             const id = await this.controller.insert(input);
             return successInsertResponse(res, { id })
         } catch (error) {

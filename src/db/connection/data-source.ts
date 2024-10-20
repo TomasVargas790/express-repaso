@@ -2,7 +2,7 @@ import '../../helper'
 import { DataSource } from 'typeorm'
 import { db } from '@/env'
 import { connectWithRetry } from './utils'
-import { entities, migrations } from './helper'
+import { entities, } from './helper'
 
 const { host,
     name: database,
@@ -22,7 +22,7 @@ export const AppDataSource = new DataSource({
     synchronize: false,
     logging: false,
     entities,
-    migrations,
+    migrations: ["../migration/*.js"],
     subscribers: [],
     connectTimeout: 10000
 })

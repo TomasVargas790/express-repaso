@@ -10,6 +10,22 @@ const { server: { port } } = env
 
 const app = express()
 initialMiddlewares(app)
+app.use((req, _, next) => {
+    const { url,
+        params,
+        query,
+        body,
+        method
+    } = req
+    console.log({
+        url,
+        params,
+        query,
+        body,
+        method
+    });
+    next()
+})
 
 app.use(userMiddleware)
 app.use(authMiddleware)

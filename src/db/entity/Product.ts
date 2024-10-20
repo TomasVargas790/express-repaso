@@ -7,21 +7,23 @@ import { ProductVersion } from './ProductVersion'
 export class Product {
 
     @PrimaryGeneratedColumn()
-        id!: number
+    id!: number
 
     @Column()
-        name!: string
+    name!: string
 
     @Column({ unique: true })
-        code!: string
+    code!: string
+
+    @Column()
+    stock!: number
 
     @ManyToOne(() => Category, category => category.products)
-
-        category!: Relation<Category>
+    category!: Relation<Category>
 
     @ManyToOne(() => Brand, brand => brand.products)
-        brand!: Relation<Brand>
+    brand!: Relation<Brand>
 
     @OneToMany(() => ProductVersion, version => version.product)
-        versions!: Relation<ProductVersion>[]
+    versions!: Relation<ProductVersion>[]
 }

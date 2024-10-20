@@ -16,6 +16,6 @@ export class Customer {
         email!: string
 
     @Column()
-        phone!: number
+        phone!: string
 
 }

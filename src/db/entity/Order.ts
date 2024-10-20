@@ -1,25 +1,22 @@
-import { Column, Entity, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn, Relation } from 'typeorm'
+import { Column, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn, Relation } from 'typeorm'
 import { Customer } from './Customer'
-import { ProductVersion } from './ProductVersion'
+import { OrderProduct } from './OrderProduct'
 
 type StatusType = 'PENDIENTE PAGO' | 'PENDIENTE ENTREGA' | 'PENDIENTE PAGO/ENTREGA' | 'FINALIZADO'
 
 @Entity()
 export class Order {
     @PrimaryGeneratedColumn()
-        id!: number
+    id!: number
 
     @Column()
-        status!: StatusType
-
-    @Column()
-        code!: string
+    status!: StatusType
 
     @ManyToOne(() => Customer)
-        customer!: Relation<Customer>
+    customer!: Relation<Customer>
 
-    @ManyToMany(() => ProductVersion,{cascade:true})
-    @JoinTable({name:'order_product'})
-        products!: Relation<ProductVersion>[]
+    /* @OneToMany(() => OrderProduct, orderProduct => orderProduct.order)
+    products!: Relation<OrderProduct>[] */
 }
+
 

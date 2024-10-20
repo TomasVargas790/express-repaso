@@ -24,7 +24,7 @@ export const authMiddleware: RequestHandler = async (req, res, next) => {
 };
 
 export const loginMiddleware: RequestHandler = async (req, res) => {
-    try {
+    try {        
         const { email, password } = req.body
         const userRepository = AppDataSource.getRepository(User)
         const user = await userRepository.findOne({ where: { email, password } })
