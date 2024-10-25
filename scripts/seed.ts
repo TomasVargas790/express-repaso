@@ -91,6 +91,8 @@ import { OrderProduct } from '@/db/entity/OrderProduct';
     { id: 14, order: { id: 4 }, product: { id: 7 }, quantity: 3, },
     { id: 15, order: { id: 4 }, product: { id: 3 }, quantity: 200, }
   ])
+  
+  logger.debug('[ORDERPRODUCTS INSERTED]')
   process.exit(1)
 
 })();
